@@ -16,9 +16,11 @@ public class GatewayApplication {
     @Bean
     public RouteLocator myRoutes(RouteLocatorBuilder builder) {
         return builder.routes()
-                .route(p -> p
-                        .path("/service")
-                        .uri("http://localhost:5000/orders"))
+                .route(p ->
+                        p.path("/service/**")
+                                .filters(f -> f.stripPrefix(1))
+                                .uri("http://localhost:5000")
+                )
                 .build();
     }
 
