@@ -8,26 +8,32 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 import java.time.LocalDateTime;
 
 @Entity
-@Table
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
-public class OrderService {
+public class EventOrder {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private Long userId;
+    private Long itemId;
 
-    private String itemId;
+    private Long userId;
 
     private LocalDateTime createDate;
 
     private LocalDateTime updateDate;
+
+    public EventOrder(Long itemId, Long userId) {
+        this.itemId = itemId;
+        this.userId = userId;
+        
+        final LocalDateTime now = LocalDateTime.now();
+        this.createDate = now;
+        this.updateDate = now;
+    }
 
 }

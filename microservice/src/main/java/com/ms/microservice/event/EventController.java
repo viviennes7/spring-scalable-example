@@ -1,12 +1,14 @@
 package com.ms.microservice.event;
 
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 
+import java.util.Random;
+
 @RestController
-@RequestMapping("/orders")
+@RequestMapping("/events")
 public class EventController {
     private final EventService eventService;
 
@@ -14,8 +16,9 @@ public class EventController {
         this.eventService = eventService;
     }
 
-    @GetMapping
-    public Mono<String> apply() {
-        return this.eventService.apply();
+    @PostMapping
+    public Mono<Boolean> apply() {
+        final long userId = new Random().nextLong();
+        return this.eventService.apply(userId);
     }
 }
