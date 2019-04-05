@@ -30,9 +30,8 @@ public class EventService {
         return this.reactiveValueOperations.get(EVENT_APPLY_KEY)
                 .doOnNext(size -> this.rabbitTemplate.convertAndSend(MicroserviceApplication.EVENT_TOPIC, "foo.bar.baz", userId))
                 .filter(this::isPurchase)
-                //FIXME 아래에 subscribe() 있는걸 어떻게 바꿀수 있을거 같은뎅...
-                .doOnNext(s -> this.reactiveValueOperations.increment(EVENT_APPLY_KEY).subscribe())
-                .doOnNext(s -> this.reactiveListOperations.leftPush(EVENT_APPLY_LIST, userId.toString()).subscribe())
+                .flatMap(s -> this.reactiveValueOperations.increment(EVENT_APPLY_KEY))
+                .flatMap(s -> this.reactiveListOperations.leftPush(EVENT_APPLY_LIST, userId.toString()))
                 .map(add -> true)
                 .defaultIfEmpty(false);
     }

@@ -18,6 +18,7 @@ public class RabbitMQConfig {
     private void setup() {
         EmbeddedRabbitMqConfig config = new EmbeddedRabbitMqConfig.Builder()
                 .rabbitMqServerInitializationTimeoutInMillis(1_000_000L)
+                .erlangCheckTimeoutInMillis(1_000_000L)
                 .build();
         this.rabbitMq = new EmbeddedRabbitMq(config);
         this.rabbitMq.start();

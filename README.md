@@ -24,3 +24,15 @@ RabbitMQ, Redis는 Gateway에 Embedded로 제공. 단, 이미 두 환경이 구�
 
 ex) 맥북프로 최상위 옵션을 100만원에 100대만 판매. 들어올 트래픽은 100만으로 짐작됨.
 
+## 핵심로직
+```java
+public Mono<Boolean> apply(Long userId) {
+    return this.reactiveValueOperations.get(EVENT_APPLY_KEY)
+            .doOnNext(size -> this.rabbitTemplate.convertAndSend(MicroserviceApplication.EVENT_TOPIC, "foo.bar.baz", userId))
+            .filter(this::isPurchase)
+            .flatMap(s -> this.reactiveValueOperations.increment(EVENT_APPLY_KEY))
+            .flatMap(s -> this.reactiveListOperations.leftPush(EVENT_APPLY_LIST, userId.toString()))
+            .map(add -> true)
+            .defaultIfEmpty(false);
+}
+```
