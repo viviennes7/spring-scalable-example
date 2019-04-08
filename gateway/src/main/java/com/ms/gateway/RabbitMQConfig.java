@@ -25,7 +25,7 @@ public class RabbitMQConfig {
     }
 
     @PreDestroy
-    private void shutup() {
+    private void stop() {
         if (nonNull(this.rabbitMq)) {
             this.rabbitMq.stop();
         }
