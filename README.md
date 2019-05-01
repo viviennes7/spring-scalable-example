@@ -3,15 +3,13 @@
 Application level에서 대규모 트래픽 감당 예제
 
 ## 사용기술
-- Spring Cloud Gateway
+- Spring Cloud Gateway (Load balancer 역할)
 - Spring WebFlux, Reactor
 - RabbitMQ
 - Redis
 
 ## 사전준비
 RabbitMQ 동작을 위해 [Erlang](https://www.erlang.org/downloads) 필요.
-
-
 
 RabbitMQ, Redis는 Gateway에 Embedded로 제공. 단, 이미 두 환경이 구축된 경우에는 해당 `Config`에서 `@Configuration`만 주석
 
