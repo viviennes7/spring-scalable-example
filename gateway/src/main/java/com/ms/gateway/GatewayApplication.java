@@ -19,7 +19,7 @@ public class GatewayApplication {
                 .route(p ->
                         p.path("/service/**")
                                 .filters(f -> f.stripPrefix(1))
-                                .uri("http://localhost:5000")
+                                .uri("lb://micro-service")
                 )
                 .build();
     }
