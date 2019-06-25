@@ -1,0 +1,27 @@
+server:
+  port: 5100
+
+spring:
+  profiles:
+    active: local
+
+---
+spring:
+  profiles: local
+
+
+---
+spring:
+  profiles: docker
+  jpa:
+    hibernate:
+      ddl-auto: none
+  datasource:
+    url: jdbc:mysql://mysql:3306/spring_scalable
+    username: root
+    password: 123456
+    initialization-mode: always
+  redis:
+    host: redis
+  rabbitmq:
+    host: rabbitmq

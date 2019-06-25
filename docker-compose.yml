@@ -1,0 +1,77 @@
+version: "3"
+
+services:
+  gateway:
+    image: ms/gateway
+    container_name: gateway
+    ports:
+      - "10000:10000"
+
+  microservice1:
+    image: ms/microservice
+    container_name: microservice1
+    links:
+      - mysql
+    depends_on:
+      - gateway
+      - mysql
+      - redis
+      - rabbitmq
+    ports:
+      - "5100:5100"
+
+  microservice2:
+    image: ms/microservice
+    container_name: microservice2
+    depends_on:
+      - gateway
+      - mysql
+      - redis
+      - rabbitmq
+    ports:
+      - "5200:5100"
+
+  microservice3:
+    image: ms/microservice
+    container_name: microservice3
+    depends_on:
+      - gateway
+      - mysql
+      - redis
+      - rabbitmq
+    ports:
+      - "5300:5100"
+
+  mysql:
+    image: mysql:5.7
+    container_name: mysql5.7
+    hostname: mysql
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_general_ci
+    volumes:
+      - ../mysql-data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+    ports:
+      - "3306:3306"
+
+  redis:
+    image: redis:3
+    container_name: redis3
+    hostname: redis
+    volumes:
+      - ../redis-data:/data
+    ports:
+      - "6379:6379"
+
+  rabbitmq:
+    image: rabbitmq:3.7.5-management
+    container_name: rabbitmq
+    hostname: app-rabbitmq
+    ports:
+      - 5672:5672
+      - 15672:15672
+    volumes:
+      - ./data/rabbitmq:/var/lib/rabbitmq/mnesia/rabbit@app-rabbitmq:cached
+    environment:
+      RABBITMQ_ERLANG_COOKIE: 6085e2412b6fa88647466c6a81c0cea0
+      RABBITMQ_DEFAULT_VHOST: /

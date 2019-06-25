@@ -20,7 +20,7 @@ public class OrderReceiver {
         log.info("received ::: " + userId);
         this.orderRepository.save(new EventOrder(EVENT_ITEM_ID, userId));
 
-        sleep(3000L);
+        sleep(500L);
         this.latch.countDown();
     }
 

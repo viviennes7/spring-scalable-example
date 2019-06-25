@@ -1,6 +1,23 @@
 server:
   port: 10000
 
+
+spring:
+  profiles:
+    active: local
+
+---
+spring:
+  profiles: local
+
 micro-service:
   ribbon:
-    listOfServers: localhost:5100 #, localhost:5200, localhost:5300
+    listOfServers: localhost:5100
+
+---
+spring:
+  profiles: docker
+
+micro-service:
+  ribbon:
+    listOfServers: microservice1:5100 , microservice2:5100, microservice3:5100
