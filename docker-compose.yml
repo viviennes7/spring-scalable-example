@@ -17,8 +17,6 @@ services:
       - mysql
       - redis
       - rabbitmq
-    ports:
-      - "5100:5100"
 
   microservice2:
     image: ms/microservice
@@ -28,8 +26,6 @@ services:
       - mysql
       - redis
       - rabbitmq
-    ports:
-      - "5200:5100"
 
   microservice3:
     image: ms/microservice
@@ -39,8 +35,6 @@ services:
       - mysql
       - redis
       - rabbitmq
-    ports:
-      - "5300:5100"
 
   mysql:
     image: mysql:5.7
