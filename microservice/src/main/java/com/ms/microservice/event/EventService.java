@@ -13,7 +13,7 @@ import static java.util.Objects.isNull;
 public class EventService {
     public static final String EVENT_APPLY_KEY = "event-apply-success-size";
     private static final String EVENT_APPLY_LIST = "event-apply-list";
-    private static final int PURCHASE_LIMIT = 40;
+    private static final int PURCHASE_LIMIT = 100;
 
     private final ReactiveValueOperations<String, String> reactiveValueOperations;
     private final ReactiveListOperations<String, String> reactiveListOperations;
