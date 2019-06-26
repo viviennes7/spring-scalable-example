@@ -17,7 +17,7 @@ spring:
     hibernate:
       ddl-auto: none
   datasource:
-    url: jdbc:mysql://mysql:3306/spring_scalable
+    url: jdbc:mysql://mysql:3306
     username: root
     password: 123456
     initialization-mode: always

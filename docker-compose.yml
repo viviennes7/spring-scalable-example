@@ -17,6 +17,7 @@ services:
       - mysql
       - redis
       - rabbitmq
+    entrypoint: ["./wait-for-it.sh","mysql:3306","--timeout=60","--","java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
 
   microservice2:
     image: ms/microservice
@@ -26,6 +27,7 @@ services:
       - mysql
       - redis
       - rabbitmq
+    entrypoint: ["./wait-for-it.sh","microservice1:5100","--timeout=60","--","java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
 
   microservice3:
     image: ms/microservice
@@ -35,6 +37,7 @@ services:
       - mysql
       - redis
       - rabbitmq
+    entrypoint: ["./wait-for-it.sh","microservice2:5100","--timeout=60","--","java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
 
   mysql:
     image: mysql:5.7
