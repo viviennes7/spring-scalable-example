@@ -10,6 +10,14 @@ Application Level에서 대규모 트래픽 감당 예제
 - Redis
 - Docker
 
+## 실행 방법
+```bash
+$ git clone https://github.com/viviennes7/spring-scalable-example.git
+$ cd spring-scalable-example
+$ mvn clean install
+$ docker-compose up
+```
+
 ## 요구사항
 - 대규모 트래픽 가정
 - 제한된 수의 상품을 팜
@@ -21,15 +29,7 @@ Application Level에서 대규모 트래픽 감당 예제
 
 ex) 맥북프로 최상위 옵션을 100만원에 100대만 판매. 들어올 트래픽은 10만으로 짐작됨.
 
-### 실행 방법
-```
-$ git clone https://github.com/viviennes7/spring-scalable-example.git
-$ cd spring-scalable-example
-$ mvn clean install
-$ docker-compose up
-```
-
-### Request
+## HTTP API
 - Event 상품 구매
 ```http
 POST http://localhost:10000/service/events
