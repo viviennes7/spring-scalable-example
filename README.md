@@ -21,6 +21,25 @@ Application Level에서 대규모 트래픽 감당 예제
 
 ex) 맥북프로 최상위 옵션을 100만원에 100대만 판매. 들어올 트래픽은 10만으로 짐작됨.
 
+### 실행 방법
+```
+$ git clone https://github.com/viviennes7/spring-scalable-example.git
+$ cd spring-scalable-example
+$ mvn clean install
+$ docker-compose up
+```
+
+### Request
+- Event 상품 구매
+```http
+POST http://localhost:10000/service/events
+```
+
+- Event 상품 구매 내역 조회
+```http
+GET http://localhost:10000/service/orders
+```
+
 ## 핵심로직
 ```java
 public Mono<Boolean> apply(Long userId) {
