@@ -25,7 +25,6 @@ public class EventController {
 
     @PostMapping
     public Mono<Boolean> apply() {
-        log.info("port ::: {}", port);
         final long userId = new Random().nextLong();
         return this.eventService.apply(userId);
     }
